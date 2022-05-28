@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 enum CardState { active, inactive }
 
-const activeCardColor = Color(0xFF1D1E33);
+const activeCardColor = Color(0xFF3D3E53);
 const inactiveCardColor = Color(0xFF111328);
 
 class InputCard extends StatefulWidget {

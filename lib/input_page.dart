@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 //
 import 'gender_selector.dart';
 import 'height_selector.dart';
+import 'weight_selector.dart';
+import 'age_selector.dart';
 import 'input_card.dart';
 
 class InputPage extends StatefulWidget {
@@ -53,12 +55,16 @@ class _InputPageState extends State<InputPage> {
         InputCard(
           child: HeightSelector(),
         ),
-        Expanded(child: Row(children: [InputCard(), InputCard()])),
+        Expanded(
+            child: Row(children: [
+          InputCard(child: WeightSelector()),
+          InputCard(child: AgeSelector())
+        ])),
       ]),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        child: const Icon(Icons.add),
-      ),
+      // floatingActionButton: FloatingActionButton(
+      //   onPressed: () {},
+      //   child: const Icon(Icons.add),
+      // ),
     );
   }
 }

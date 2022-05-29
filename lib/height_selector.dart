@@ -3,14 +3,16 @@ import 'package:flutter/material.dart';
 import 'constants.dart';
 
 class HeightSelector extends StatefulWidget {
-  const HeightSelector({Key? key}) : super(key: key);
+  final Function callback;
+
+  const HeightSelector({Key? key, required this.callback}) : super(key: key);
 
   @override
   State<HeightSelector> createState() => _HeightSelectorState();
 }
 
 class _HeightSelectorState extends State<HeightSelector> {
-  int height = 60;
+  int height = kStartingHeight;
 
   @override
   Widget build(BuildContext context) {
@@ -53,6 +55,7 @@ class _HeightSelectorState extends State<HeightSelector> {
               setState(() {
                 height = newValue.round();
               });
+              widget.callback(height);
             },
           ),
         ),

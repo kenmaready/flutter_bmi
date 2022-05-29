@@ -8,9 +8,14 @@ class PlusMinusSelector extends StatefulWidget {
   final String title;
   final String? units;
   int value;
+  final Function? callback;
 
   PlusMinusSelector(
-      {Key? key, required this.title, this.units, required this.value})
+      {Key? key,
+      required this.title,
+      this.units,
+      required this.value,
+      this.callback})
       : super(key: key);
 
   @override
@@ -29,7 +34,8 @@ class _PlusMinusSelectorState extends State<PlusMinusSelector> {
           textBaseline: TextBaseline.alphabetic,
           crossAxisAlignment: CrossAxisAlignment.baseline,
           children: [
-            Text(' ${widget.value.toString()}', style: kKeyNumberTextStyle),
+            Text('${widget.units != null ? ' ' : ''}${widget.value.toString()}',
+                style: kKeyNumberTextStyle),
             Text(widget.units ?? ''),
           ],
         ),
@@ -38,11 +44,21 @@ class _PlusMinusSelectorState extends State<PlusMinusSelector> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             RoundIconButton(
-                onPressed: () => setState(() => widget.value--),
+                onPressed: () {
+                  setState(() => widget.value--);
+                  if (widget.callback != null) {
+                    (widget.callback as Function)(widget.value);
+                  }
+                },
                 icon: FontAwesomeIcons.minus),
             const SizedBox(width: 12.0),
             RoundIconButton(
-                onPressed: () => setState(() => widget.value++),
+                onPressed: () {
+                  setState(() => widget.value++);
+                  if (widget.callback != null) {
+                    (widget.callback as Function)(widget.value);
+                  }
+                },
                 icon: FontAwesomeIcons.plus),
           ],
         )
